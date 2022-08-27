@@ -1,0 +1,42 @@
+import pepe.*
+import bonos.*
+import categorias.*
+
+describe "primeros Test" {
+	
+	test "pepe como cadete, bonoMontoFijo, presentismoNormal, faltas3, sueldo:20800" {
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoMontoFijo)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		pepe.cantidadDeFaltas(3)
+		
+		assert.equals(20800,pepe.sueldo())
+	}
+	
+	test "pepe gerente, bonoResultado%, presentismo nulo, debe ser 16500" {
+		pepe.categoria(gerente)
+		pepe.bonoResultado(bonoPorcentaje)
+		pepe.bonoPresentismo(bonoNulo)
+		
+		assert.equals(16500,pepe.sueldo())
+	}
+	
+}
+
+describe "Test adicionales sugeridos" {
+	
+	method initialize() {
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoPorcentaje)
+		pepe.bonoPresentismo(bonoPresentismoNormal)		
+	}
+	
+	test "pepe cadete, no faltó, resultado%, presentismo normal debe ser 24000" {
+		assert.equals(24000,pepe.sueldo())
+	}
+
+	test "pepe cadete, faltó 1 vez, resultado%, presentismo normal debe ser 23000" {
+		pepe.cantidadDeFaltas(1)
+		assert.equals(23000,pepe.sueldo())
+	}
+}
